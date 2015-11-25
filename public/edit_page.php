@@ -52,7 +52,7 @@
 ?>
 
 
-<! end of self processing form  and start of html>
+<! end of self processing form  and start of html/ I love comments>
 
 
 <?php include("../includes/layouts/header.php"); ?>
