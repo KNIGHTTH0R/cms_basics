@@ -27,7 +27,7 @@ position   int(3)       NO        NULL
 
 3.mysql> describe pages
 
- Field      Type      Null  Key Default Extra          
+        
 
  id        int(11)     NO   PRI  NULL     auto_increment 
  menu_id   int(11)      NO  MUL  NULL                    

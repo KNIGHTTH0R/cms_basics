@@ -35,6 +35,28 @@
           <a href="edit_subject.php?menu=<?php echo urlencode($current_subject["menu_id"]); ?>">Editar Menu
           </a>
 
+            <div>
+              <h3>Subpaginas de este menu:</h3>
+              <ul>
+                  <?php 
+                      $subject_pages = find_all_sub_menus($current_subject["menu_id"]);
+                      while($page = mysqli_fetch_assoc($subject_pages)) {
+                        echo "<li>";
+                        $safe_page_id = urlencode($page["id"]);
+                        echo "<a href=\"manage_content.php?page={$safe_page_id}\">";
+                        echo htmlentities($page["menu_name"]);
+                        echo "</a>";
+                        echo "</li>";
+                      }
+                    ?>
+                    </ul>
+                       + <a href="new_page.php?menu=<?php echo urlencode($current_subject["menu_id"]); ?>">Anadir una subpagina</a>
+
+
+
+
+                </div>
+
         <?php } elseif($current_page) { ?>
             
             <h2> <?php echo  $current_page["menu_name"]; ?> </h2> 
@@ -46,8 +68,10 @@
             Content:<br/>
             <div class= "view-content">
               <?php echo $current_page["content"]; ?>
-
-
+            </div>
+                <br />
+                  <br />
+               <a href="edit_page.php?page=<?php echo urlencode($current_page['id']); ?>">Editar pagina</a>
 
             <?php } 
             else { echo "Porfavor seleccione una opcion en la barra lateral." ;  }?>
