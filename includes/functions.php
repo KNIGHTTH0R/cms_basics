@@ -46,6 +46,25 @@
 
           }
 
+
+     function find_all_sub_menus($menu_id){
+      
+        global $connection;
+        $safe_subject_id = mysqli_real_escape_string($connection,$menu_id);
+
+        
+         $query  = "SELECT * " ;
+        $query .= " FROM pages ";
+       
+        $query .= " where menu_id = {$safe_subject_id} ";
+        $query .= "ORDER BY position ASC ";
+        $page_set = mysqli_query($connection, $query);
+        confirm_query($page_set);
+        return $page_set;
+        
+
+          }     
+
     function find_subject_by_id($subject_id){
         global $connection;
         //$safesubject es una medida para evitar mysql injection.
@@ -62,6 +81,21 @@
         }else { return null;}
 
        }
+    function find_pages_for_subject($subject_id) {
+    global $connection;
+    
+    $safe_subject_id = mysqli_real_escape_string($connection, $subject_id);
+    
+    $query  = "SELECT * ";
+    $query .= "FROM pages ";
+    $query .= "WHERE visible = 1 ";
+    $query .= "AND menu_id = {$safe_subject_id} ";
+    $query .= "ORDER BY position ASC";
+    $page_set = mysqli_query($connection, $query);
+    confirm_query($page_set);
+    return $page_set;
+  }
+  
 
     function find_page_by_id($page_id){
         global $connection;
