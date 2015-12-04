@@ -2,6 +2,8 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
 <?php require_once("../includes/validation_functions.php"); ?>
+ <?php confirm_logged_in(); ?>
+
 <?php find_selected_page(); ?>
 <?php if(!$current_page){
 
@@ -38,7 +40,7 @@
 			if ($result && mysqli_affected_rows($connection) >= 1 ) {
 				// Success
 				$_SESSION["message"] = "Edicion exitosa";
-				redirect_to("manage_content.php");
+				redirect_to("manage_content.php?page=" . urldecode($current_page['id']));
 			} else {
 				// Failure
 				$message = "Fallo Edicion del menu.";
@@ -53,7 +55,7 @@
 
 
 <! end of self processing form  and start of html/ I love comments>
-
+<?php $layout_context = "admin"; ?>
 
 <?php include("../includes/layouts/header.php"); ?>
 
@@ -109,8 +111,13 @@
 		  <br/>
 		  Contenido de la pagina:
 		  <br/><br/>
-		  <textarea name = "content" value="content">Ingrese su contenido aqui</textarea/><br/>
-		  <input type="submit" name="submit" value="Editar Pagina" />
+		  <textarea name = "content" value="content" rows="20" cols="80"	>
+		  		<?php
+		  			echo htmlentities($current_page["content"]);
+		  		?>
+
+		  </textarea/><br/>
+		  <input type="submit" name="submit" value="Ingresar cambios a Pagina" />
 
 
 		</form>
@@ -118,7 +125,7 @@
 		<a href="admin.php"> Cancel</a>
 		&nbsp;
 		&nbsp;
-		<a href="delete_subject.php?page=<?php echo urlencode($current_page["id"]) ?>" onclick="return confirm('Esta seguro?')"> Borrar Menu</a>
+		<a href="delete_page.php?page=<?php echo urlencode($current_page["id"]) ?>" onclick="return confirm('Esta seguro?')"> Borrar Menu</a>
 	</div>
 </div>
 

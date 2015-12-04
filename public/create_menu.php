@@ -30,6 +30,9 @@ if (isset($_POST['submit'])) {
 		// Success
 		$_SESSION["message"] = "Menu Creado";
 		redirect_to("manage_content.php");
+
+
+
 	} else {
 		// Failure
 		$_SESSION["message"] = "Fallo creacion del menu.";
