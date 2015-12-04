@@ -1,6 +1,8 @@
 <?php require_once("../includes/session.php");?>
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+
+<?php $layout_context = "admin"; ?>
 <?php include("../includes/layouts/header.php"); ?>
 <?php  find_selected_page(); ?>
 <div id="main">
@@ -35,7 +37,7 @@
         &nbsp;
         <input type="radio" name="visible" value="1" /> Yes
       </p>
-      <input type="submit" name="submit" value="Create Subject" />
+      <input type="submit" name="submit" value="Create menu" />
     </form>
      <br/> 
   

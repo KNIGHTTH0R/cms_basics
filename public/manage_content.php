@@ -5,6 +5,10 @@
 <?php  find_selected_page(); ?>
 
 
+
+<?php $layout_context = "admin";?>
+
+
 <?php include("../includes/layouts/header.php"); ?>
 
 <div id="main">
@@ -18,7 +22,7 @@
    </div> 
    
 
-  <div id="page">
+   <div id="page">
       <?php  echo message();?>
       
         <?php if($current_subject){
@@ -57,21 +61,22 @@
 
                 </div>
 
-        <?php } elseif($current_page) { ?>
+            <?php } elseif($current_page) { ?>
             
             <h2> <?php echo  $current_page["menu_name"]; ?> </h2> 
+            <a href="edit_page.php?page=<?php echo urlencode($current_page['id']); ?>">Editar pagina</a>
+            <br> <br>
             Pagina: <?php echo  htmlentities($current_page["menu_name"]); ?> <br/>
             Posicion actual: <?php echo  htmlentities($current_page["position"]); ?> <br/>
             Visible?: <?php echo  htmlentities($current_page["visible"] == 1 ? "Si" :"No"); ?> <br/>
-            <a href="edit_page.php?page=<?php echo urlencode($current_page["id"]); ?>">
-            Editar Pagina<br/><br/><a />
+           
             Content:<br/>
             <div class= "view-content">
               <?php echo $current_page["content"]; ?>
             </div>
                 <br />
                   <br />
-               <a href="edit_page.php?page=<?php echo urlencode($current_page['id']); ?>">Editar pagina</a>
+             
 
             <?php } 
             else { echo "Porfavor seleccione una opcion en la barra lateral." ;  }?>
@@ -79,7 +84,7 @@
         </div>
     </div>
   
-   
+<div>
 <?php include("../includes/layouts/footer.php"); ?>   
-
+</div>
 

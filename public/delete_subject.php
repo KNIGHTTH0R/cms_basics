@@ -3,7 +3,7 @@
 <?php require_once("../includes/functions.php"); ?>
 <?php find_selected_page(); ?>
 
-<?php $current_subject =find_subject_by_id($_GET["menu"]);?>
+<?php $current_subject =find_subject_by_id($_GET["menu"], false);?>
 <?php if(!$current_subject){
 
 	redirect_to("manage_content.php");
@@ -29,7 +29,7 @@ if(mysqli_num_rows($pages_set)>0){
 				redirect_to("manage_content.php");
 			} else {
 			$_SESSION["message"] = "Borrado Fallo.";
-		redirect_to("manage_content.php?subject={$id}");
+		redirect_to("manage_content.php?menu={$id}");
 
 
 

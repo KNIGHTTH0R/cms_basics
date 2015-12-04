@@ -2,6 +2,8 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
 <?php require_once("../includes/validation_functions.php"); ?>
+ <?php confirm_logged_in(); ?>
+
 <?php find_selected_page(); ?>
 <?php if(!$current_subject){
 
@@ -35,7 +37,7 @@
 			if ($result && mysqli_affected_rows($connection) >= 1 ) {
 				// Success
 				$_SESSION["message"] = "Edicion exitosa";
-				redirect_to("manage_content.php");
+				redirect_to("manage_content.php?menu=". urldecode($current_subject["menu_id"]));
 			} else {
 				// Failure
 				$message = "Fallo Edicion del menu.";
@@ -51,7 +53,7 @@
 
 
 
-
+<?php $layout_context = "admin"; ?>
 <?php include("../includes/layouts/header.php"); ?>
 
 
@@ -77,7 +79,7 @@
 		  <p>Position:
 		    <select name="position">
 				<?php
-					$subject_set = find_all_menuitems();
+					$subject_set = find_all_menuitems(false);
 					$subject_count = mysqli_num_rows($subject_set);
 					for($count=1; $count <= $subject_count; $count++) {
 						echo "<option value=\"{$count}\"";
@@ -103,7 +105,7 @@
 		    	if($current_subject["visible"] == 1){echo "checked";}
 		    	?> /> Yes
 		  </p>
-		  <input type="submit" name="submit" value="Editar Menu" />
+		  <input type="submit" name="submit" value="Ingresar Cambios" />
 		</form>
 		<br />
 		<a href="admin.php"> Cancel</a>
